@@ -1,3 +1,70 @@
+const dog = {
+    species: 'dog',
+    name: 'Hachiko',
+    gender: 'male',
+    legs: 4,
+    hands: 0,
+    saying: 'wooooof!'
+};
+
+const cat = {
+    species: 'cat',
+    name: 'Mira',
+    gender: 'female',
+    legs: 4,
+    hands: 0,
+    saying: 'meow'
+};
+
+const man = {
+    species: 'human',
+    name: 'Sasha',
+    gender: 'male',
+    legs: 2,
+    hands: 2,
+    saying: 'Hi there!'
+};
+
+const woman = {
+    species: 'human',
+    name: 'Maria',
+    gender: 'female',
+    legs: 2,
+    hands: 2,
+    saying: 'Hola'
+};
+
+const catWoman = {
+    species: 'cat-human',
+    name: 'Catwoman',
+    gender: 'female',
+    legs: 2,
+    hands: 2,
+    saying: cat.saying
+}
+
+dog.friends = man.name + ', ' + woman.name;
+cat.friends = woman.name + ', ' + catWoman.name;
+woman.friends = man.name + ', ' + dog.name + ', ' + cat.name;
+man.friends = dog.name;
+
+const objData = obj => {
+    let sol = '';
+    for (prop in obj) {
+        sol += obj[prop] + '; ';
+    }
+    return sol;
+};
+
+print(objData(dog));
+print(objData(cat));
+print(objData(man));
+print(objData(woman));
+print(objData(catWoman));
+
+
+
+
 /* Refer to https://github.com/OleksiyRudenko/a-tiny-JS-world for the task details
    Complete the below for code reviewers' convenience:
 
