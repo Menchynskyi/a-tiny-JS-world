@@ -1,69 +1,60 @@
-const dog = {
-    species: 'dog',
-    name: 'Hachiko',
-    gender: 'male',
-    legs: 4,
-    hands: 0,
-    saying: 'wooooof!'
-};
+class Inhabitants {
+    constructor(species, subSpecies, name, gender, legs, hands, saying) {
+        this.species = species,
+        this.subSpecies = subSpecies,
+        this.name = name,
+        this.gender = gender,
+        this.legs = legs,
+        this.hands = hands,
+        this.saying = saying
+    }
 
-const cat = {
-    species: 'cat',
-    name: 'Mira',
-    gender: 'female',
-    legs: 4,
-    hands: 0,
-    saying: 'meow'
-};
-
-const man = {
-    species: 'human',
-    name: 'Sasha',
-    gender: 'male',
-    legs: 2,
-    hands: 2,
-    saying: 'Hi there!'
-};
-
-const woman = {
-    species: 'human',
-    name: 'Maria',
-    gender: 'female',
-    legs: 2,
-    hands: 2,
-    saying: 'Hola'
-};
-
-const catWoman = {
-    species: 'cat-human',
-    name: 'Catwoman',
-    gender: 'female',
-    legs: 2,
-    hands: 2,
-    saying: cat.saying
+    say() {
+        return this.saying
+    }
 }
 
-dog.friends = man.name + ', ' + woman.name;
-cat.friends = woman.name + ', ' + catWoman.name;
-woman.friends = man.name + ', ' + dog.name + ', ' + cat.name;
-man.friends = dog.name;
+class Animals extends Inhabitants {
+    constructor(subSpecies, name, gender, saying, furColor) {
+        super('animal', subSpecies, name, gender, 4, 0, saying)
+        this.furColor = furColor
+    }
+}
+
+class Humans extends Inhabitants {
+    constructor(subSpecies, name, gender, saying) {
+        super('human', subSpecies, name, gender, 2, 2, saying)
+    }
+
+    say() {
+        return `${this.saying} My name is ${this.name}.`
+    }
+}
+
+const dog = new Animals('dog', 'Hachikō', 'male', 'woof!', 'red-white'),
+      cat = new Animals('cat', 'Mira', 'female', 'meow...', 'black'),
+      man = new Humans('homo sapiens', 'Sasha', 'male', 'Hi there!'),
+      woman = new Humans('homo sapiens', 'Maria', 'female', 'Hello!'),
+      catWoman = new Humans('cat-human', 'Anonymous', 'female', cat.saying);
+
+dog.friends = [man.name, woman.name];
+cat.friends = [woman.name, catWoman.name];
+man.friends = [dog.name, woman.name];
+woman.friends = [dog.name, cat.name];
 
 const objData = obj => {
-    let sol = '';
-    for (prop in obj) {
-        sol += obj[prop] + '; ';
-    }
-    return sol;
-};
+     let allData = '';
+     for (prop in obj) {
+         allData += `<strong>${prop}</strong>: ${obj[prop]}; `;
+     }
+     return allData
+ };
 
 print(objData(dog));
 print(objData(cat));
 print(objData(man));
 print(objData(woman));
 print(objData(catWoman));
-
-
-
 
 /* Refer to https://github.com/OleksiyRudenko/a-tiny-JS-world for the task details
    Complete the below for code reviewers' convenience:
